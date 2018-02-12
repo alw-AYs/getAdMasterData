@@ -2,14 +2,14 @@
  * @Author: alw-AY's
  * @Date:   2018-02-08 16:27:09
  * @Last Modified by:   alw-AY's
- * @Last Modified time: 2018-02-12 12:34:07
+ * @Last Modified time: 2018-02-12 16:39:46
  */
 var express = require('express');
 var router = express.Router();
 var _ = require('lodash');
 var URL = require('url');
 
-var AdMasterAPI = require('../AdmasterAPI.js');
+var AdMasterAPI = require('../AdmasterAPI');
 
 var api;
 
