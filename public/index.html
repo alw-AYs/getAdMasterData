@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>AdMaster API Test</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link href="css/main.css?rev=@@hash" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<div class="wrapper" :class="{ready:isReady}" id="wrapper">
+  <div class="page-header">
+    <mu-appbar title="AdMaster API Test"></mu-appbar>
+  </div>
+  <div class="page-content">
+    <div class="container">
+      <ul class="nav">
+        <li>
+          <mu-select-field label="Platform" :error-text="platformErrorText" v-model="platform">
+            <mu-menu-item  v-for="platform,index in platforms" :value="index" :title="platform"/>
+          </mu-select-field>
+        </li>
+        <li>
+          <mu-date-picker auto-ok label="Start Date" mode="landscape" :max-date="maxDate" :error-text="startDateErrorText" v-model="startDate"/>
+        </li>
+        <li>
+          <mu-date-picker auto-ok label="End Date" mode="landscape" :max-date="maxDate" :error-text="endDateErrorText" :min-date="startDate" v-model="endDate"/>
+        </li>
+        <li>
+          <mu-text-field type="number" label="Max Results" value="50" max="100" :error-text="maxResultsErrorText" v-model="maxResults"/>
+        </li>
+        <li class="no-flex">
+          <mu-raised-button label="Get Data" primary @click="clickBtn"/>
+        </li>
+      </ul>
+    </div>
+    <hr class="mu-divider">
+    <div class="container">
+      <transition name="pageFade">
+        <mu-table v-if="tableData.length>0" :fixed-header="false" :enable-select-all="false" :multi-selectable="false" :selectable="false" :show-checkbox="false" height="100%">
+          <mu-thead slot="header">
+            <mu-tr>
+              <mu-th v-for="th,index in tableHead" :key="index">{{th}}</mu-th>
+            </mu-tr>
+          </mu-thead>
+          <mu-tbody>
+            <mu-tr v-for="row,index in tableData"  :key="index">
+              <mu-td v-for="td,idx in row" :key="idx">{{td}}</mu-td>
+            </mu-tr>
+        </mu-tbody>
+      </mu-table>
+    </transition>
+      <transition name="pageFade">
+        <h1 class="no-data" v-if="noData">No results found...</h1>
+    </transition>
+  </div>
+
+  <transition name="pageFade">
+    <div v-if="showLoading" class="loading">
+      <div class="spinner"></div>
+    </div>
+  </transition>
+</div>
+<div class="page-footer">AdMaster API Test ©2018 Created by alw-AY's</div>
+</div>
+<!-- common js -->
+<script type="text/javascript" src="js/main.js?rev=@@hash"></script>
+<script>
+</script>
+</body>
+</html>
+
