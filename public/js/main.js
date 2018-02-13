@@ -38211,7 +38211,7 @@ Date.prototype.format = function(fmt) {
  * @Email:  ysc1217@gmail.com
  * @Date:   2017-08-10 14:51:04
  * @Last Modified by:   alw-AY's
- * @Last Modified time: 2018-02-12 15:51:43
+ * @Last Modified time: 2018-02-13 14:50:37
  */
 
 'use strict';
@@ -38331,7 +38331,7 @@ function init() {
     }
   });
 
-  axios.get('/adMaster')
+  axios.get('./adMaster')
     .then(function(response) {
       site.platforms = response.data.data.platform;
       site.isReady = true;
